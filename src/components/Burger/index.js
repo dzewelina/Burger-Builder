@@ -5,11 +5,17 @@ import classes from './index.module.css';
 import BurgerIngredient from './BurgerIngredient';
 
 const Burger = ({ ingredients }) => {
-  const transformedIngredients = Object.keys(ingredients).map(ingKey =>
-    [...Array(ingredients[ingKey])].map((_, i) => (
-      <BurgerIngredient key={ingKey + i} type={ingKey} />
-    ))
-  );
+  let transformedIngredients = Object.keys(ingredients)
+    .map(ingKey =>
+      [...Array(ingredients[ingKey])].map((_, i) => (
+        <BurgerIngredient key={ingKey + i} type={ingKey} />
+      ))
+    )
+    .reduce((arr, el) => arr.concat(el), []);
+
+  if (!transformedIngredients.length) {
+    transformedIngredients = <p>Please start adding ingredients!</p>;
+  }
 
   return (
     <div className={classes.Burger}>
