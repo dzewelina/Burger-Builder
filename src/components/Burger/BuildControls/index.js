@@ -1,7 +1,21 @@
 import React from 'react';
 
-import classes from './index.moduls.css';
+import classes from './index.module.css';
 
-const BuildControls = ({}) => ();
+import BuildControl from './BuildControl';
 
-export default BuildControls
+const controls = [
+  { label: 'Salad', type: 'salad' },
+  { label: 'Bacon', type: 'bacon' },
+  { label: 'Cheese', type: 'cheese' },
+  { label: 'Meat', type: 'meat' },
+]
+
+const BuildControls = () => (
+  <div className={classes.BuildControls}>
+    {controls.map(control => 
+      <BuildControl key={control.label} label={control.label} />
+    )}
+  </div>);
+
+export default BuildControls;
